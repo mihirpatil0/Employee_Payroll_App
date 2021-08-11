@@ -38,7 +38,7 @@ document.getElementById("submitButton").onclick = function ()
     let salary = document.getElementById("salary").value;
     let startDate = new Date(parseInt(document.getElementById("year").value), parseInt(document.getElementById("month").value), parseInt(document.getElementById("day").value));
 	let notes = document.getElementById("notes").value;
-	let employee = new EmployeeInfo(name,picture,gender,department,salary,startDate,notes);
+	let employee = new EmployeeInfo("name","picture","gender","department","salary","startDate","notes");
 	alert(employee.toString());
 	}
 	catch(error)
