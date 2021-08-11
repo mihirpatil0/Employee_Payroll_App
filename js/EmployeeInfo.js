@@ -83,8 +83,6 @@ class EmployeeInfo
         }
     }
 
-    }
-
     get notes()
     {
         return this._notes;
