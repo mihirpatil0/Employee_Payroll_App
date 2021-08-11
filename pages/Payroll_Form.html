@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600&&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="../css/Payroll_Form.css">
     <script defer src="../js/Payroll_Form.js"></script>
+    <script defer src="../js/EmployeeInfo.js"></script>
 </head>
 <body>
     <header class="header-content header">
@@ -22,13 +23,14 @@
         </div>
     </header>
     <div class="form-content">
-        <form action="#" class="form" onsubmit="save();return false">
+        <form id="emp-form-html" action="#" class="form" onsubmit="save();return false">
             <div class="form-head">
                 Employee Payroll Form
             </div>
             <div class="row-content">
                 <label for="name" class="label text">Name :</label> 
                 <input type="text" class="input" id="name" name="name" placeholder="your name.." required>
+                <error-output class="text-error" for="name"></error-output>
             </div>
             <!--profile input fields-->
             <div class="row-content">
@@ -156,19 +158,10 @@
                 <!-- Submit and Reset Button -->
                 <div class="submit-reset">
                     <button type="submit" class="button submitButton" id="submitButton">Submit</button>
-                    <button type="reset" class="resetButton button">Reset</button>
+                    <button type="reset" class="resetButton button" id="reset">Reset</button>
                 </div>
             </div>
         </form>
-        <script>
-            const salary = document.querySelector('#salary')
-            const output = document.querySelector('.salary-output')
-            output.textContent = salary.value;
-            salary.addEventListener('input', function ()
-            {
-                   output.textContent = salary.value
-            });
-       </script>
     </div>
 </body>
 </html>
