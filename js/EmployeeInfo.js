@@ -77,7 +77,7 @@ class EmployeePayrollData
     }
     set startDate(startDate)
     {
-        this._startDate = startDate;
+        this._startDate = new Date(startDate);
     }
       
     toString()
