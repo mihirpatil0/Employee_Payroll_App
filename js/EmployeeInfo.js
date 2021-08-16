@@ -77,7 +77,6 @@ class EmployeePayrollData
     }
     set startDate(startDate)
     {
-        // this._startDate = new Date(startDate);
         if (new Date(startDate) <= new Date()   && (new Date() - new Date(startDate)) >= 30)
         {
             this._startDate = new Date(startDate);
