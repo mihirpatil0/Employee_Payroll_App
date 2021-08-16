@@ -77,14 +77,18 @@ class EmployeePayrollData
     }
     set startDate(startDate)
     {
-        if (new Date(startDate) <= new Date()   && (new Date() - new Date(startDate)) >= 30)
+        let now = new Date();
+        let date = new Date(startDate);
+        if (date > now)
         {
-            this._startDate = new Date(startDate);
+            throw 'Future date not allowed';
         }
-        else
+        var diff = Math.abs(now.getTime() - date.getTime());
+        if (diff / (1000*60*60*24) > 30 )
         {
-            throw "date  is incorrect";
+            throw "Date cannot be past 30 days";
         }
+        this._startDate = new Date(startDate);
     }
       
     toString()
