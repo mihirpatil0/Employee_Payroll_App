@@ -20,6 +20,31 @@ window.addEventListener( 'DOMContentLoaded', (event) => {
 		}
 	});
 
+	function checkFulldate(fulldate) {
+		try {
+		  new EmployeePayrollData().startDate = fulldate
+		  dateError.textContent = ""
+		} catch (error) {
+		  dateError.textContent = error
+		} 
+	  }
+	  const day = document.querySelector("#day") 
+	  const month = document.querySelector("#month")
+	  const year =  document.querySelector("#year")
+	  const dateError = document.querySelector(".date-error")
+	  day.addEventListener("change" ,function() {
+		let fulldate = day.value +" "+month.value+" "+year.value
+		checkFulldate(fulldate) 
+	  })
+	  month.addEventListener("change" ,function() {
+		let fulldate = day.value +" "+month.value+" "+year.value
+		checkFulldate(fulldate) 
+	  })
+	  year.addEventListener("change" ,function() {
+		let fulldate = day.value +" "+month.value+" "+year.value
+		checkFulldate(fulldate) 
+	  })
+
 	const salary = document.querySelector('#salary');
 	const output = document.querySelector('.salary-output');
 	output.textContent = salary.value;
@@ -62,6 +87,7 @@ function createAndUpdateStrorage(employeePayrollData)
 const createEmployeePayroll = () =>
 {
 	let employeePayrollData = new EmployeePayrollData();
+	employeePayrollData.id = new Date().getTime();
 	try
 	{
 		employeePayrollData.name = getInputValueById('#name');
@@ -77,7 +103,8 @@ const createEmployeePayroll = () =>
 	employeePayrollData.salary = getInputValueById('#salary');
 	employeePayrollData.note = getInputValueById('#notes');
 	let date = getInputValueById('#day')+" "+getInputValueById('#month')+" "+getInputValueById('#year');
-	employeePayrollData.startDate = Date.parse(date);
+	// employeePayrollData.startDate = Date.parse(date);
+	employeePayrollData.startDate = new Date(date);
 	alert(employeePayrollData.toString());
 	return employeePayrollData;
 }
