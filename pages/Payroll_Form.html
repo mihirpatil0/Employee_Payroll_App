@@ -23,14 +23,14 @@
         </div>
     </header>
     <div id="formId" class="form-content">
-        <form action="#" class="form" onreset="resetForm()" onsubmit="save(event);return false">
+        <form action="#" class="form" onreset="resetForm()" onsubmit="save(event)">
             <div class="form-head">
                 Employee Payroll Form
             </div>
             <div class="row-content">
                 <label for="name" class="label text">Name :</label> 
                 <input type="text" class="input" id="name" name="name" placeholder="your name.." required>
-                <error-output class="text-error" for="text"></error-output>
+                <error-output class="name-error" for="name"></error-output>
             </div>
             <!--profile input fields-->
             <div class="row-content">
