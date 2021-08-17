@@ -36,6 +36,19 @@
       "_note": "",
       "_profilePic": "../assets/profile-images/Ellipse -1.png",
       "id": 3
-    }
+    },
+	{
+	  "_name": "Mihir",
+      "_profileImage": "../assets/profile-images/Ellipse -3.png",
+      "_gender": "male",
+      "_department": [
+        "hr",
+        "sales"
+      ],
+      "_salary": "450000",
+      "_notes": "Welcome Mihir",
+      "_startDate": "2021-08-10T18:30:00.000Z",
+      "id": 4
+	}
   ]
 }
