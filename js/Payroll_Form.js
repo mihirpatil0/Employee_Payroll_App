@@ -90,16 +90,16 @@ function setEmployeePayrollObject()
 		setTextValue('.name-error',error)
 		throw error;
 	}
-	employeePayrollObj._profilePic = getSelectionValue("[name=profile]").pop();
-	employeePayrollObj._gender = getSelectionValue("[name=gender]").pop();
-	employeePayrollObj._department = getSelectionValue("[name=department]");
+	employeePayrollObj._profilePic = getSelectedValues("[name=profile]").pop();
+	employeePayrollObj._gender = getSelectedValues("[name=gender]").pop();
+	employeePayrollObj._department = getSelectedValues("[name=department]");
 	employeePayrollObj._salary = getInputValueById("#salary");
 	employeePayrollObj._notes = getInputValueById("#notes");
 	let date = getInputValueById("#day")+" "+getInputValueById("#month")+" "+getInputValueById("#year");
 	employeePayrollObj._startDate = new Date(date);
 }
 
-function createAndUpdateStrorage()
+function createAndUpdateStorage()
 {
 	let employeePayrollList = JSON.parse(localStorage.getItem("EmployeePayrollList"));
 
@@ -129,7 +129,7 @@ const createEmployeePayrollData = (id) =>
 	let employeePayrollData = new EmployeePayrollData();
 	if(!id)
 	{
-		employeePayrollData._id = new Date.getTime();
+		employeePayrollData._id = new Date().getTime();
 	}
 	else
 	{
@@ -143,7 +143,6 @@ function setEmployeePayrollData(employeePayrollData)
 {
 	try
 	{
-		// employeePayrollData.name = getInputValueById('#name');
 		employeePayrollData.name = employeePayrollObj._name;
 	}
 	catch (e)
@@ -151,22 +150,16 @@ function setEmployeePayrollData(employeePayrollData)
 		setTextValue('.name-error', e);
 		throw e;
 	}
-	// employeePayrollData.profilePic = getSelectedValues('[name=profile]').pop();
-	// employeePayrollData.gender = getSelectedValues('[name=gender]').pop();
-	// employeePayrollData.department = getSelectedValues('[name=department]');
-	// employeePayrollData.salary = getInputValueById('#salary');
-	// employeePayrollData.note = getInputValueById('#notes');
-	// let date = getInputValueById('#day')+" "+getInputValueById('#month')+" "+getInputValueById('#year');
-	// employeePayrollData.startDate = new Date(date);
 
 	employeePayrollData.profilePic = employeePayrollObj._profilePic;
 	employeePayrollData.gender = employeePayrollObj._gender;
 	employeePayrollData.department = employeePayrollObj._department;
-	EmployeePayrollData.salary = employeePayrollObj._salary;
-	EmployeePayrollData.note = employeePayrollObj._notes;
+	EmployeePayrollData.salary = getInputValueById("#salary");
+	EmployeePayrollData.note = getInputValueById("#notes");
+	let date = getInputValueById("#day")+" "+getInputValueById("#month")+" "+getInputValueById("#year");
 	try
 	{
-		EmployeePayrollData.startDate = new Date(Date.parse(employeePayrollObj._startDate));
+		EmployeePayrollData.startDate = new Date(date);
 	}
 	catch (e)
 	{
@@ -187,26 +180,11 @@ const getSelectedValues = (propertyValue) =>
 		return selItems;
 }
 
-/*
-*	1: querySelector is the newer feature.
-*	2: The querySelector method can be used when selecting by element name,
-*		nestingm, or class name.
-*	3: querySelector lets you find elements with rules that can't be
-*		expressed with getElementById.
-*/
-
 const getInputValueById = (id) =>
 {
 	let value = document.querySelector(id).value;
 	return value;
 }
-
-/*
-* 1: getElementById is better supported than querySelector in older versions
-*	of the browsers.
-* 2: The things with getElementById is that it only allows to select an
-*	element by its id.
-*/
 
 const getInputElementValue = (id) =>
 {
