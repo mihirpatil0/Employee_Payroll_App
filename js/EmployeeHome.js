@@ -1,14 +1,41 @@
 let empPayrollList
 window.addEventListener("DOMContentLoaded", (event) => {
-    empPayrollList = getEmployeeDataFromStorage()
-    document.querySelector(".emp-count").textContent = empPayrollList.length
-    createInnerHtml();
+    if (site_properties.use_local_storage.match("true")) {
+        getEmployeeDataFromStorage()
+    } else {
+        getEmployeeDataFromServer()
+    }
 });
 
-const getEmployeeDataFromStorage = () => {
-    return localStorage.getItem('EmployeePayrollList') ?
-        JSON.parse(localStorage.getItem('EmployeePayrollList')) : []
+function processEmployeeDataResponse() {
+    document.querySelector(".emp-count").textContent = empPayrollList.length
+    createInnerHtml();
 }
+
+
+const getEmployeeDataFromStorage = () => {
+    empPayrollList = localStorage.getItem('EmployeePayrollList') ?
+        JSON.parse(localStorage.getItem('EmployeePayrollList')) : []
+    processEmployeeDataResponse();
+}
+
+function getEmployeeDataFromServer() {
+    makePromiseCall("GET", site_properties.server_url, true)
+        .then(
+            (responseText) => {
+                empPayrollList = JSON.parse(responseText)
+                processEmployeeDataResponse()
+            }
+        )
+        .catch(
+            (error) => {
+                console.log("Error status" + JSON.stringify(error));
+                empPayrollList = []
+                processEmployeeDataResponse()
+            }
+        );
+}
+
 
 const createInnerHtml = () => {
     if (empPayrollList.length == 0) {
